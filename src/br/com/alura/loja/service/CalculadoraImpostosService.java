@@ -3,23 +3,13 @@ package br.com.alura.loja.service;
 import java.math.BigDecimal;
 
 import br.com.alura.loja.modelo.Orcamento;
-import br.com.alura.loja.modelo.TipoImposto;
+import br.com.alura.loja.modelo.Imposto;
 
 public class CalculadoraImpostosService {
 
-	public BigDecimal calcular(Orcamento orcamento, TipoImposto tipoImposto) {
+	public BigDecimal calcular(Orcamento orcamento, Imposto imposto) {
 
-		switch (tipoImposto) {
-		case ICMS:
-			return orcamento.getValor()
-					.multiply(new BigDecimal("0.1"));
-		case ISS:
-			return orcamento.getValor()
-					.multiply(new BigDecimal("0.6"));
-		default:
-			return BigDecimal.ZERO;
-
-		}
+		return imposto.calcular(orcamento);
 
 	}
 
