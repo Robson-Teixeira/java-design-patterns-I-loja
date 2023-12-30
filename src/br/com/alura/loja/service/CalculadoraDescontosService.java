@@ -2,19 +2,21 @@ package br.com.alura.loja.service;
 
 import java.math.BigDecimal;
 
+import br.com.alura.loja.modelo.Desconto;
+import br.com.alura.loja.modelo.DescontoItensAcimaCinco;
+import br.com.alura.loja.modelo.DescontoValorAcimaQuinhentos;
+import br.com.alura.loja.modelo.DescontoZero;
 import br.com.alura.loja.modelo.Orcamento;
 
 public class CalculadoraDescontosService {
 
 	public BigDecimal calcular(Orcamento orcamento) {
 
-		if (orcamento.getQuantidadeItens() > 5)
-			return orcamento.getValor().multiply(new BigDecimal("0.1"));
+		Desconto desconto = new DescontoItensAcimaCinco(
+				new DescontoValorAcimaQuinhentos(
+						new DescontoZero()));
 
-		if (orcamento.getValor().compareTo(new BigDecimal("500")) > 0)
-			return orcamento.getValor().multiply(new BigDecimal("0.1"));
-
-		return BigDecimal.ZERO;
+		return desconto.calcular(orcamento);
 
 	}
 
