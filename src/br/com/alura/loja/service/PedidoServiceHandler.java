@@ -20,6 +20,11 @@ public class PedidoServiceHandler {
 		System.out.println("Salvar pedido");
 		System.out.println("Enviar e-mail com dados do pedido");
 
+		EmailService emailService = new EmailService();
+
+		emailService.executar(pedido);
+		pedidoService.salvar(pedido);
+
 	}
 
 }

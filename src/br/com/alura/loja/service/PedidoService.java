@@ -2,6 +2,9 @@ package br.com.alura.loja.service;
 
 import java.math.BigDecimal;
 
+import br.com.alura.loja.dao.PedidoDAO;
+import br.com.alura.loja.modelo.Pedido;
+
 public class PedidoService {
 
 	private String cliente;
@@ -24,6 +27,11 @@ public class PedidoService {
 
 	public int getQuantidadeItens() {
 		return quantidadeItens;
+	}
+	
+	public void salvar(Pedido pedido) {
+		PedidoDAO pedidoDao = new PedidoDAO();
+		pedidoDao.salvar(pedido);
 	}
 
 }
