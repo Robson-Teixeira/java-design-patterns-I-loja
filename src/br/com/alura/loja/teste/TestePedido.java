@@ -3,6 +3,7 @@ package br.com.alura.loja.teste;
 import java.math.BigDecimal;
 
 import br.com.alura.loja.service.PedidoService;
+import br.com.alura.loja.service.PedidoServiceHandler;
 
 public class TestePedido {
 
@@ -14,7 +15,9 @@ public class TestePedido {
 
 		PedidoService pedidoService = new PedidoService(
 				cliente, valorOrcamento, quantidadeItens);
-		pedidoService.executa();
+
+		PedidoServiceHandler pedidoServiceHandler = new PedidoServiceHandler();
+		pedidoServiceHandler.executa(pedidoService);
 
 	}
 
