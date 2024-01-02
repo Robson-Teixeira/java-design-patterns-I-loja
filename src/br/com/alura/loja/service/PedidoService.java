@@ -3,9 +3,10 @@ package br.com.alura.loja.service;
 import java.math.BigDecimal;
 
 import br.com.alura.loja.dao.PedidoDAO;
+import br.com.alura.loja.modelo.AcaoPedido;
 import br.com.alura.loja.modelo.Pedido;
 
-public class PedidoService {
+public class PedidoService implements AcaoPedido {
 
 	private String cliente;
 	private BigDecimal valorOrcamento;
@@ -29,7 +30,7 @@ public class PedidoService {
 		return quantidadeItens;
 	}
 	
-	public void salvar(Pedido pedido) {
+	public void executarAcao(Pedido pedido) {
 		PedidoDAO pedidoDao = new PedidoDAO();
 		pedidoDao.salvar(pedido);
 	}
