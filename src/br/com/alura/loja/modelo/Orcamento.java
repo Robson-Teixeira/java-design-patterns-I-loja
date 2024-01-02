@@ -6,11 +6,12 @@ public class Orcamento {
 
 	private BigDecimal valor;
 	private int quantidadeItens;
-	private String situacao;
+	private SituacaoOrcamento situacaoOrcamento;
 
 	public Orcamento(BigDecimal valor, int quantidadeItens) {
 		this.valor = valor;
 		this.quantidadeItens = quantidadeItens;
+		this.situacaoOrcamento = new EmAnalise();
 	}
 
 	public BigDecimal getValor() {
@@ -21,21 +22,29 @@ public class Orcamento {
 		return quantidadeItens;
 	}
 
-	public void aprovar() {
-		this.situacao = "Aprovado";
+	public void setSituacaoOrcamento(SituacaoOrcamento situacaoOrcamento) {
+		this.situacaoOrcamento = situacaoOrcamento;
 	}
 
 	public void aplicarDescontoExtra() {
 
-		BigDecimal valorDescontoExtra = BigDecimal.ZERO;
-
-		if (situacao.equals("Em Análise"))
-			valorDescontoExtra = new BigDecimal("0.05");
-		else if (situacao.equals("Aprovado"))
-			valorDescontoExtra = new BigDecimal("0.02");
+		BigDecimal valorDescontoExtra = this.situacaoOrcamento
+				.calcularValorDescontoExtra(this);
 
 		this.valor = this.valor.subtract(valorDescontoExtra);
 
+	}
+
+	public void aprovar() {
+		this.situacaoOrcamento.aprovar(this);
+	}
+
+	public void reprovar() {
+		this.situacaoOrcamento.reprovar(this);
+	}
+
+	public void finalizar() {
+		this.situacaoOrcamento.finalizar(this);
 	}
 
 }
